@@ -24,7 +24,7 @@ public class MainActivity extends ActionBarActivity {
         topicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> aView, View view, int position, long id) {
-                Intent topic = new Intent(MainActivity.this, Questions.class);
+                Intent topic = new Intent(MainActivity.this, Fragments.class);
                 String chosenTopic = topicList.getItemAtPosition(position).toString();
                 topic.putExtra("topic", chosenTopic);
                 startActivity(topic);

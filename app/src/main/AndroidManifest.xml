@@ -17,17 +17,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Questions"
-            android:label="@string/title_activity_topic_overview" >
-        </activity>
-        <activity
-            android:name=".Quiz"
-            android:label="@string/title_activity_quiz" >
-        </activity>
-        <activity
-            android:name=".Summary"
-            android:label="@string/title_activity_answer_summary" >
-        </activity>
+            android:name=".Fragments"
+            android:label="@string/title_fragment_activity" ></activity>
     </application>
 
 </manifest>
