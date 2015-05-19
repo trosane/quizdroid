@@ -3,7 +3,7 @@ package edu.washington.trosane.quizdroid;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Question implements Serializable {
+class Question implements Serializable {
     private String question;
     private ArrayList<String> allanswers;
     private int correct;
