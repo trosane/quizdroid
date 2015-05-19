@@ -3,6 +3,7 @@ package edu.washington.trosane.quizdroid;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,19 +16,26 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.topic_list);
-        final ListView topicList = (ListView) findViewById(R.id.topicList);
-        String[] topics = {"Math", "Physics", "Marvel Super Heroes"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,android.R.id.text1, topics);
-        topicList.setAdapter(adapter);
+        setContentView(R.layout.main_activity);
+        ListView listview = (ListView) findViewById(R.id.listView);
 
-        topicList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, QuizApp.getInstance().getTopic());
+
+        listview.setAdapter(adapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> aView, View view, int position, long id) {
-                Intent topic = new Intent(MainActivity.this, Fragments.class);
-                String chosenTopic = topicList.getItemAtPosition(position).toString();
-                topic.putExtra("topic", chosenTopic);
-                startActivity(topic);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("ListView", "Position " + position + "Pressed");
+                //set to next activity
+                Intent nextActivity = new Intent(MainActivity.this, Overview.class);
+                int a = position;
+                nextActivity.putExtra("title", a);
+
+                //send intent
+                if(nextActivity.resolveActivity(getPackageManager()) != null) {
+                    startActivity(nextActivity);
+                }
             }
         });
     }
@@ -47,8 +55,15 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent nextActivity = new Intent(MainActivity.this, Preferences.class);
+
+            //send intent
+            if(nextActivity.resolveActivity(getPackageManager()) != null) {
+                startActivity(nextActivity);
+            }
             return true;
         }
 

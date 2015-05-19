@@ -1,15 +1,47 @@
 package edu.washington.trosane.quizdroid;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class question implements Serializable {
-    String question;
-    String[] option;
-    int answer;
+public class Question implements Serializable {
+    private String question;
+    private ArrayList<String> allanswers;
+    private int correct;
 
-    public question(String question, String[] option, int answer){
-        this.question = question;
-        this.option = option;
-        this.answer = answer;
+    public Question() {
+
+    }
+
+    public String getQuestion() {
+        return this.question;
+    }
+
+    public void setQuestion(String a) {
+        this.question = a;
+    }
+
+    public ArrayList<String> getAnswers() {
+        return this.allanswers;
+    }
+
+    public void setAnswers(String a, String b, String c, String d) {
+        ArrayList<String> answers = new ArrayList<String>();
+        answers.add(a);
+        answers.add(b);
+        answers.add(c);
+        answers.add(d);
+        this.allanswers = answers;
+
+    }
+
+    public int getSize() {
+        return this.allanswers.size();
+    }
+    public int getCorr() {
+        return this.correct;
+    }
+
+    public void setCorr(int a) {
+        this.correct = a;
     }
 }
